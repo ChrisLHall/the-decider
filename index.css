@@ -12,3 +12,8 @@ body {
   font-size: 50px;
   text-align: center;
 }
+
+textarea {
+  width: 40%;
+  height: 250px;
+}
