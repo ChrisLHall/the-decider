@@ -18,32 +18,91 @@
 // I can mark projects as done, and put them in the done list.
 // I can configure at what time each day the system resets (3AM).
 
-// There is a work section and an entertainment section.
+// There is a work section and an entertainment section. It would be
+// nice to fully separate them.
 
 // It would be nice to sync across devices blah blah blah but it must
 // be lightweight, and I'm going to actually try using it before I worry
 // about that. It would be nice to pull entertainment recommendations
-// out of something random like popular Itch games for example.
+// out of something random like popular Itch games for example. It
+// might be nice to have a log of everything worked on - but this isn't
+// for time tracking. It might be nice to be able to just type in what
+// youre doing for the day - but if you already know what to do today
+// you shouldn't use this today. It might be nice to have a place where
+// I can just type a comma separated list, and have it pick from there
+// and stay picked for the day.
+
+// Hmm. Maybe don't keep any record of what you worked on. This is to
+// avoid being precious about projects etc, I can track that separately.
 
 // hokay LETS GO.
+
+const PRODUCTIVITY = 0;
+const ENTERTAINMENT = 1;
+let mode = PRODUCTIVITY;
 
 function populate(elem, arr) {
   document.querySelector("#" + elem).innerHTML = arr.join("\n")
 }
 
-var project_options = [
-  "The Decider",
-  "Bee Game",
-  "Neural Pet",
-  "Tiny Town",
-]
+// might be nice to build this object from a list of strings
+let productivityOptions = [
+  {
+    category: 'Programming projects',
+    members: [
+      { name: 'The Decider', timesPicked: 0, lastTimePicked: null, },
+      { name: 'Mobile game editor', timesPicked: 0, lastTimePicked: null, },
+      { name: 'Phone party', timesPicked: 0, lastTimePicked: null, },
+    ],
+  },
+  {
+    category: 'Game projects',
+    members: [
+      { name: 'New PuzzleScript game', timesPicked: 0, lastTimePicked: null, },
+      { name: 'Add to tiny town', timesPicked: 0, lastTimePicked: null, },
+    ],
+  },
+  {
+    category: 'Skills',
+    members: [
+      { name: 'Work on a song', timesPicked: 0, lastTimePicked: null, },
+      { name: 'Practice music', timesPicked: 0, lastTimePicked: null, },
+      { name: 'Practice drawing', timesPicked: 0, lastTimePicked: null, },
+      { name: 'Practice 3D modeling', timesPicked: 0, lastTimePicked: null, },
+    ],
+  },
+  {
+    category: 'Housework',
+    members: [
+      { name: 'Item off my to-do list', timesPicked: 0, lastTimePicked: null, },
+      { name: 'Cleaning', timesPicked: 0, lastTimePicked: null, },
+    ],
+  },
+];
 
-var entertainment_options = [
-  "Coco",
-  "Donut County",
-  "Borderlands 2",
-  "Bake Show",
-]
+let doneProductivity = [];
+
+let entertainmentOptions = [
+  {
+    category: 'Movies',
+    members: [
+      { name: 'Mortal Engines', timesPicked: 0, lastTimePicked: null, },
+      { name: 'Stardust', timesPicked: 0, lastTimePicked: null, },
+      { name: 'Us', timesPicked: 0, lastTimePicked: null, },
+    ],
+  },
+  {
+    category: 'Games',
+    members: [
+      { name: 'Factorio', timesPicked: 0, lastTimePicked: null, },
+      { name: 'Journey', timesPicked: 0, lastTimePicked: null, },
+      { name: 'Fallout 4', timesPicked: 0, lastTimePicked: null, },
+      { name: 'Borderlands 2', timesPicked: 0, lastTimePicked: null, },
+    ],
+  },
+];
+
+let doneEntertainment = [];
 
 const STAY_LENGTH = 7
 
@@ -54,5 +113,7 @@ function decide(arr) {
     document.querySelector("#when").innerHTML = today.toDateString();
 }
 
+/*
 populate("possibleProjects", project_options);
 populate("possibleEntertainment", entertainment_options);
+*/

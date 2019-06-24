@@ -10,16 +10,21 @@
 </head>
 
 <body>
-<div class="maincontainer">
-    <p class='huge'>Right now you should: <span id="what">...</span></p>
-    <p>These decisions expire on <span id="when">...</span>.</p>
-    <input type='button' value='DO A PROJECT' onclick="decide(project_options);" />
-    <input type="button" value='ENTERTAIN ME' onclick="decide(entertainment_options);" />
-    <br><br>
-    <textarea id="possibleProjects">
-    </textarea>
-    <textarea id="possibleEntertainment">
-    </textarea>
+<div id="splashscreen">
+  <h1>What do you need to decide?</h1>
+  <button type='button' class="btn btn-primary btn-block btn-huge">Projects</button>
+  <button type='button' class="btn btn-primary btn-lg btn-block btn-huge">Entertainment</button>
+</div>
+<div id="chooser" class="maincontainer">
+  <p class='huge'>Right now you should: <span id="what">...</span></p>
+  <p>These decisions expire on <span id="when">...</span>.</p>
+  <input type='button' value='DO A PROJECT' onclick="decide(project_options);" />
+  <input type="button" value='ENTERTAIN ME' onclick="decide(entertainment_options);" />
+  <br><br>
+  <textarea id="possibleProjects">
+  </textarea>
+  <textarea id="possibleEntertainment">
+  </textarea>
 </div>
 <script src="index.js"></script>
 </body>
