@@ -42,7 +42,7 @@ const ENTERTAINMENT = 1;
 let mode = PRODUCTIVITY;
 
 function populate(elem, arr) {
-  document.querySelector("#" + elem).innerHTML = arr.join("\n")
+  document.querySelector("#" + elem).value = arr.join("\n");
 }
 
 // might be nice to build this object from a list of strings
@@ -103,6 +103,22 @@ let entertainmentOptions = [
 ];
 
 let doneEntertainment = [];
+
+function listChange(elem, arr) {
+  var listElem = document.querySelector("#" + elem);
+  var rawArray = listElem.value.split("\n");
+  arr.length = 0; // clear the array
+  for (var i = 0; i < rawArray.length; i++) {
+    var item = rawArray[i];
+    console.log(item)
+    if (item.length > 0) {
+      arr.push(item);
+    }
+  }
+  listElem.value = arr.join("\n");
+  console.log("list changed " + elem);
+  console.log(arr.join("\n"))
+}
 
 const STAY_LENGTH = 7
 
