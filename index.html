@@ -21,9 +21,9 @@
   <input type='button' value='DO A PROJECT' onclick="decide(project_options);" />
   <input type="button" value='ENTERTAIN ME' onclick="decide(entertainment_options);" />
   <br><br>
-  <textarea id="possibleProjects">
+  <textarea id="possibleProjects" onchange="listChange('possibleProjects', project_options);">
   </textarea>
-  <textarea id="possibleEntertainment">
+  <textarea id="possibleEntertainment" onchange="listChange('possibleEntertainment', entertainment_options);">
   </textarea>
 </div>
 <script src="index.js"></script>
