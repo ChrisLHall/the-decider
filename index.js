@@ -67,8 +67,23 @@ let entertainment_options = [
 
 let doneEntertainment = [];
 
+let dict_options = {
+  'Movies': {
+    'Mortal Engines': newEntry(),
+    'Stardust': newEntry(),
+  },
+  'Games': {
+    'Factorio': newEntry(),
+    'Journey': newEntry(),
+  }
+};
+
+
+
+
 function listChange(elem, arr) {
   var listElem = document.querySelector("#" + elem);
+  /*
   var rawArray = listElem.value.split("\n");
   arr.length = 0; // clear the array
   for (var i = 0; i < rawArray.length; i++) {
@@ -81,6 +96,8 @@ function listChange(elem, arr) {
   listElem.value = arr.join("\n");
   console.log("list changed " + elem);
   console.log(arr.join("\n"))
+  */
+ console.log(stringToArray(listElem.value));
 }
 
 const STAY_LENGTH = 7
@@ -91,6 +108,51 @@ function decide(arr) {
     today.setDate(today.getDate() + 14); 
     document.querySelector("#when").innerHTML = today.toDateString();
 }
+
+
+// big string that gets split, it looks like this
+// Games
+// - Factorio
+// - Journey
+function stringToArray(str) {
+  var result = {};
+  var currentCategory = null;
+
+  let lines = str.split('\n');
+  for (const line of lines) {
+    let trimmed = line.trim();
+    if (trimmed.length == 0) {
+      continue;
+    }
+    if (trimmed.startsWith('-')) {
+      if (currentCategory !== null) {
+        // TODO try loading from memory
+        result[currentCategory][trimmed] = newEntry();
+      } else {
+        console.log("Can't add " + trimmed + " to null category!");
+      }
+      // sub-item
+    } else {
+      // category
+      currentCategory = trimmed;
+      result[currentCategory] = {};
+    }
+  }
+
+  return result;
+}
+
+
+// same format as dict_options
+function arrayToString(arr) {
+
+}
+
+function newEntry() {
+  return { timesPicked: 0, lastTimePicked: null, timeAdded: null };
+}
+
+
 
 /*
 populate("possibleProjects", project_options);
